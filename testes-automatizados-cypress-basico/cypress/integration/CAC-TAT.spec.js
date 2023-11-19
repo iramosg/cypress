@@ -19,7 +19,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get("#lastName").type("Ramos");
     cy.get("#email").type("igortestegmail.com");
     cy.get("#open-text-area").type("Teste");
-    cy.get("button[type='submit']").click();
+    cy.contains("button", "Enviar").click();
     cy.get(".error").should("be.visible");
   });
 
@@ -33,7 +33,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get("#email").type("igorteste@gmail.com");
     cy.get("#phone-checkbox").click();
     cy.get("#open-text-area").type("Teste");
-    cy.get("button[type='submit']").click();
+    cy.contains("button", "Enviar").click();
 
     cy.get(".error").should("be.visible");
   });
@@ -62,12 +62,24 @@ describe("Central de Atendimento ao Cliente TAT", function () {
   });
 
   it("exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", function () {
-    cy.get("button[type='submit']").click();
+    cy.contains("button", "Enviar").click();
     cy.get(".error").should("be.visible");
   });
 
-  it.only("envia o formuário com sucesso usando um comando customizado", function () {
+  it("envia o formuário com sucesso usando um comando customizado", function () {
     cy.fillMandatoryFieldsAndSubmit();
     cy.get(".success").should("be.visible");
+  });
+
+  it("seleciona um produto (YouTube) por seu texto", function () {
+    cy.get("#product").select("YouTube").should("have.value", "youtube");
+  });
+
+  it("seleciona um produto (Mentoria) por seu valor (value)", function () {
+    cy.get("#product").select("Mentoria").should("have.value", "mentoria");
+  });
+
+  it("seleciona um produto (Blog) por seu valor (value)", function () {
+    cy.get("#product").select("Blog").should("have.value", "blog");
   });
 });
