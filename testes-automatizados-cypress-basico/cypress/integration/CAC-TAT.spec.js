@@ -29,4 +29,6 @@ describe("Central de Atendimento ao Cliente TAT", function () {
 
     cy.get(".error").should("be.visible");
   });
+
+  it("", function () {});
 });
