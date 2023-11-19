@@ -10,10 +10,12 @@ describe("Central de Atendimento ao Cliente TAT", function () {
   });
 
   it.only("preenche os campos obrigatórios e envia o formulário", function () {
+    const longText =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
     cy.get("#firstName").type("Igor");
     cy.get("#lastName").type("Ramos");
     cy.get("#email").type("igorteste@gmail.com");
-    cy.get("#open-text-area").type("Teste");
+    cy.get("#open-text-area").type(longText, { delay: 0 });
     cy.get("button[type='submit']").click();
     cy.get(".success").should("be.visible");
   });
