@@ -34,7 +34,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get("#phone").type("abcdefghij").should("have.value", "");
   });
 
-  it.only("exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário", function () {
+  it("exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido antes do envio do formulário", function () {
     cy.get("#firstName").type("Igor");
     cy.get("#lastName").type("Ramos");
     cy.get("#email").type("igorteste@gmail.com");
@@ -43,5 +43,28 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get("button[type='submit']").click();
 
     cy.get(".error").should("be.visible");
+  });
+
+  it("preenche e limpa os campos nome, sobrenome, email e telefone", function () {
+    cy.get("#firstName")
+      .type("Igor")
+      .should("have.value", "Igor")
+      .clear()
+      .should("have.value", "");
+    cy.get("#lastName")
+      .type("Ramos")
+      .should("have.value", "Ramos")
+      .clear()
+      .should("have.value", "");
+    cy.get("#email")
+      .type("igorteste@gmail.com")
+      .should("have.value", "igorteste@gmail.com")
+      .clear()
+      .should("have.value", "");
+    cy.get("#phone")
+      .type("1234567890")
+      .should("have.value", "1234567890")
+      .clear()
+      .should("have.value", "");
   });
 });
