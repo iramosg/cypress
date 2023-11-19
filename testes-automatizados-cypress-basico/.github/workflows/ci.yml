@@ -7,5 +7,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: cypress-io/github-action@v6
         with:
-          command: npm run test
+          start: npm run test
           working-directory: ./testes-automatizados-cypress-basico
